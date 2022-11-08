@@ -24,22 +24,26 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($books as $book)
-                    <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $book->judul_buku }}</td>
-                        <td>{{ $book->penulis_buku }}</td>
-                        <td>{{ $book->jumlah_halaman_buku }}</td>
-                        <td>{{ $book->tahun_terbit_buku }}</td>
-                        <td>
-                            <a href="{{ route('editBook', $book->id) }}" class="btn btn-primary btn-sm"><i
-                                    class="fas fa-pencil-alt"></i></a>
-                            <a href="#" data-uri="{{ route('deleteBook', $book->id) }}" class="btn btn-danger btn-sm"
-                                data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i
-                                    class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                @endforeach
+                @if ($books->count() != 0)
+                    @foreach ($books as $book)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $book->judul_buku }}</td>
+                            <td>{{ $book->penulis_buku }}</td>
+                            <td>{{ $book->jumlah_halaman_buku }}</td>
+                            <td>{{ $book->tahun_terbit_buku }}</td>
+                            <td>
+                                <a href="{{ route('editBook', $book->id) }}" class="btn btn-primary btn-sm"><i
+                                        class="fas fa-pencil-alt"></i></a>
+                                <a href="#" data-uri="{{ route('deleteBook', $book->id) }}"
+                                    class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#confirmDeleteModal"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <div class="alert alert-warning">Data Masih Kosong</div>
+                @endif
             </tbody>
         </table>
     </div>
